@@ -1,0 +1,35 @@
+body{
+    background: #F8F8F8;
+    font-family: Inter;
+}
+
+.explore-container{
+    background-color: white;
+    margin: 50px;
+}
+
+.explore-filter-container{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding-top: 20px;
+    margin-left:50px;
+}
+
+.explore-filter-container input{
+    width: 320px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    color: #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../img/Search.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 10px 20px 10px 40px;
+    margin-right: 130px;
+    height:35px;
+}
+
+

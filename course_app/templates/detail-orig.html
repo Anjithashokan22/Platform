@@ -1,0 +1,470 @@
+{% load static %}
+{% include "header.html" %}
+<link rel="stylesheet" href="{% static 'css/course.css' %}">
+<link rel="stylesheet" href="{% static 'css/explore.css' %}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="{% static 'js/functions.js' %}"></script>
+{% block styles %}
+<style>
+.banner-img-container{
+  display: flex;
+  justify-content: center;
+  margin: 55px 40px 45px 40px;
+}
+
+.banner-img{
+  width:100%;
+  height: 300px;
+  background-color: black;
+}
+
+.prize-button{
+  position:absolute;
+  right:40px;
+  bottom:23px;
+  width:125px;
+  height:34px;
+  background:transparent;
+  color:white;
+  font-family: "Inter", Arial, sans-serif;
+  font-size:13px;
+  border-radius:4px;
+  border: 1px solid #FFFFFF;
+
+}
+.course-image{
+  width:190px;
+}
+
+.course_button_detail{
+    background:black;
+    color:white;
+    width:152px;
+    height:54px;
+    position:relative;
+    margin-left:40px;
+   border-radius:4px;
+
+}
+.button-lines{
+    font-size:13px;
+    font-family: "Inter", Arial, sans-serif;
+    color: #858585;
+
+}
+
+.button_in_content{
+    padding-left:15px;
+    position:absolute;
+    top:9px;
+}
+
+.overall-course-button{
+    display:flex;
+    background-color: #FFFFFF;
+    padding: 20px 20px 20px 0px;
+    width: fit-content;
+    height: min-content;
+}
+
+.overall-course-button-and-date-details-box{
+  display: flex;
+}
+
+.date-details-container{
+  background-color: #FFFFFF;
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  height: fit-content;
+}
+
+.overall-text-container{
+  width: 662px;
+  margin-top: 3px;
+  padding-left: 35px;
+  background: #ffffff;
+}
+.more-event{
+    margin-top:20px;
+}
+
+.heading{
+    font-family: "Inter", Arial, sans-serif;
+    font-size:24px;
+    font-weight:bold;
+    margin-top:28px;
+}
+.sub-text{
+    width:608px;
+    font-family: "Inter", Arial, sans-serif;
+    font-size:15px;
+    padding:5px;
+}
+.whole-body{
+    background: #F8F8F8;
+}
+
+.left-side{
+    margin-left:40px;
+    margin-bottom:50px;
+}
+.dtl{
+    margin-left:1px;
+}
+.date-time-location{
+    font-size:21px;
+    font-family: "Inter", Arial, sans-serif;
+    font-weight:bold;
+}
+
+.date{
+  padding-top:16px;
+  letter-spacing:2px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight:bold;
+  font-size:15px;
+}
+.time{
+  letter-spacing:2px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size:15px;
+}
+
+.location{
+  letter-spacing:2px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size:19px;
+}
+.date-price{
+  width:100%;
+}
+.producers{
+  width:50%;
+  display: flex;
+}
+.producers-whole{
+  height: 180px;
+  background-color: white;
+  font-size: 24px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: bold;
+  margin-left: -126px;
+  padding-left: 36px;
+  padding-top:28px;
+
+}
+
+.producer-text{
+  padding-left: 7px;
+}
+.producer-img{
+  padding: 15px;
+}
+.price-join{
+  background-color: #FFFFFF;
+  margin-top: 5px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-div{
+  background:#E7E7E7;
+  font-family: "Inter", Arial, sans-serif;
+  font-size:25px;
+  font-weight:bold;
+  width:90%;
+  height:45px;
+  border-radius:5px;
+  padding-top:10px;
+  padding-left:15px;
+}
+
+.event-begins{
+  font-size:13px;
+  font-weight:normal;
+  text-align:right;
+  margin-top:-21px;
+  margin-right:160px;
+
+}
+.difference{
+  color:#6E7191;
+  font-size:13px;
+  font-weight:normal;
+  text-align:right;
+  margin-right:56px;
+  margin-top:-16px;
+}
+
+.join-event{
+  width:90%;
+  margin-top:10px;
+}
+
+.join-button{
+  width: 100%;
+  height: 45px;
+  background: #4047E1;
+  color: white;
+  font-family: "Inter", Arial, sans-serif;
+  border-radius: 4px;
+  border-color: white;
+}
+.subtopics {
+            display: none;
+            margin-left: 20px; /* Indent subtopics */
+        }
+
+.author_img{
+  width: auto;
+   height: 100%;
+    margin-left: -50px;
+    overflow: hidden;
+}
+.author-card{
+    display: flex;
+    display: inline-block; 
+    position: relative; 
+    width: 200px;
+     height: 200px;
+      overflow: hidden;
+       border-radius: 50%; 
+    filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.1));
+}
+.authors-whole{
+  background-color: white;
+  display: flex;
+  justify-content: space-around; /* To distribute the circles evenly */
+  align-items: center; /* To vertically align the circles */
+  width: 100%;
+}
+.subtopics {
+  display: none;
+}
+
+.dropdown {
+  position: relative;
+  border: 1px solid #ccc;
+  height: 50px;
+  padding-left: 10px;
+  margin-bottom: 10px; 
+  background: #EFF0F6;
+  width:480px;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content div {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.topic-button {
+  background: #EFF0F6;
+  color: rgb(30, 29, 29);
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.plus-button {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%);
+}
+.whole-topics{
+  background-color: white;
+  margin-top:8px;
+  padding-top:70px;
+  padding-left:40px;
+  padding-bottom:29px;
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="page-content">
+  <!--for banner-->
+  <div class="banner-img-container">
+    <div class="banner-img"></div>
+  </div>
+
+  <!--for course details-->
+    <div class="whole-body">
+        <div class="overall-course-button-and-date-details-box">
+        <div>
+        <div class="overall-course-button">
+        <div class="course_button_detail">
+            <div class="button_in_content">{{ course.course_lifetime_learners }} 
+                <p class="button-lines"> Lifetime Learners</p>
+            </div>
+        </div>
+        <div class="course_button_detail">
+            <div class="button_in_content">{{ course.course_rating }} /10
+                <p class="button-lines"> Lifetime Rating</p>
+            </div>
+        </div>
+        <div class="course_button_detail">
+            <div class="button_in_content">{{ course.course_first_published}}
+                <p class="button-lines">First Published on</p>
+            </div>
+        </div>
+        <div class="course_button_detail">
+            <div class="button_in_content">{{ course.course_times_launched }}
+                <p class="button-lines">Times Launched </p>
+            </div>
+        </div>
+      </div>
+      <div class="overall-text-container">
+        <div class="sub-text">
+          <p class="heading"> More About The Event </p>
+            <div class="more-event">
+                {{course.more_about_course}}
+            </div>
+        </div>
+        <div class="sub-text">
+          <p class="heading">Relevance of the Programme </p>
+          <div class="more-event">
+              {{course.course_relevance_of_program}}
+          </div>
+        </div>
+        <div class="sub-text">
+            <p class="heading">What will you learn?</p>
+            <div class="more-event">
+                {{course.course_what_will_learn }}
+            </div>
+        </div>
+      </div>
+      </div>
+      <div class="date-price">
+      <div class="date-details-container">
+        <div class="col-md-6">
+          <div class="right-side">
+            <div class="dtl"> 
+              <div class="date-time-location">Date,Time & Location </div>
+              <div class="date">{{var}} date</div>
+            <div class="time">at {{course.course_time}} IST</div>
+            <div class="location"> {{course.course_location}}</div>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="price-join">
+        <div class="price-div">
+         Price :&#8377; {{course.course_price}} <p class="event-begins">This event begins in <p class="difference">{{difference}}</p></p>
+        </div>
+        <div class="join-event">
+          <button class="join-button">Join This Course</button>
+        </div>
+        </div>
+      <div class="producers-whole">
+        <p class="producer-text">Producers</p>
+        <div class="producers">  
+          {% for producer in producers %}
+          <div class="producer-img">
+         <img src="{{ producer.image_url }}" alt="Producer Image">
+         </div>
+          {% endfor %}
+        </div>
+      </div>
+        <div class="authors-whole">
+          <div class="authors-text">Authors</div>
+          {% for author in authors %}
+          <div class="author-card">
+            <div class="author_img">
+              <img src="{{ author.image_url }}" alt="author image">
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+<div class="whole-topics">
+{% for topic in topics %}
+<div class="dropdown">
+  <button class="topic-button">{{ topic.name }} <span class="plus-button">+</span></button>
+  <div class="dropdown-content">
+    {% for subtopic in topic.parent_topics.all %}
+    <div>{{ subtopic.name }}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+</div>
+
+  </div>
+  </div>
+  </div>
+
+  <!--for speakers-->
+  <div class="speakers-container"></div>
+  <!--for curriculum-->
+  <div class="curriculum-container"></div>
+  <!--for similar courses-->
+  <div class="similar-courses-container"></div>
+  <!--for similar events-->
+  <div class="similar-events-container"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.Myswiper', {
+  // Optional parameters
+  autoplay:{
+    delay:10000000000,
+    disableOnInteraction:false,
+  },
+  loop: true,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+    clickable:true,
+  },
+
+  // Navigation arrows
+  navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+}); 
+var topicButtons = document.querySelectorAll('.topic-button');
+
+// Add click event listener to each topic button
+topicButtons.forEach(function(topicButton) {
+    topicButton.addEventListener('click', function(event) {
+        // Prevent default button behavior
+        event.preventDefault();
+
+        // Toggle display of subtopics for the corresponding dropdown content
+        var dropdownContent = topicButton.nextElementSibling;
+        if (dropdownContent.style.display === 'none') {
+            dropdownContent.style.display = 'block';
+        } else {
+            dropdownContent.style.display = 'none';
+        }
+    });
+});
+</script>
+
+
+
+{% endblock %}
+{% include 'footer.html' %}

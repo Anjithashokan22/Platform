@@ -1,0 +1,590 @@
+{% load static %}
+{% include "header.html" %}
+<link rel="stylesheet" href="{% static 'css/course.css' %}">
+<link rel="stylesheet" href="{% static 'css/explore.css' %}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="{% static 'js/functions.js' %}"></script>
+{% block styles %}
+<style>
+.banner-img{
+    margin-left: 55px;
+    width:1015px;
+    height: 300px; 
+    margin-top: 85px; 
+}
+
+.explore-filter-dropdowns{
+    display: flex;
+    justify-content: center;
+}
+
+.explore-filter-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    margin-bottom: 54px;
+}
+
+.explore-filter-svg{
+    margin-left: 5px;
+}
+
+
+.explore-filter-element {
+    cursor: pointer;
+  }
+.explore-filter-svg{
+    cursor: pointer;
+}
+  .explore-filter-box {
+    position: relative;
+    display: flex;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor:pointer;
+    margin:-73px;
+
+  }
+  .dropdown-content.show {
+    display: inline-block;
+    margin-top: 150px;
+  }
+  .dropdown-content div {
+    padding: 8px 12px; /* Adjust padding as needed */
+  }
+  .dropdown-content div:hover {
+    background-color: #ddd;
+  }
+
+  #myInput {
+    box-sizing: border-box;
+    /* {% comment %} background-image: url('searchicon.png'); {% endcomment %} */
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    width:220px;
+  }
+  #myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content1.show {
+    display: inline-block;
+    margin-top: 245px;
+    width:220px;
+    margin-left:385px;
+}
+
+.dropdown-content1 {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor:pointer;
+  }
+
+  .dropdown-content1 div {
+    padding: 8px 12px; /* Adjust padding as needed */
+  }
+  .dropdown-content1 div:hover {
+    background-color: #ddd;
+  }
+
+  .img-course{
+    width:1016px;
+    height:290px;
+  } 
+  .coursetd{
+    left:60px;
+    color:white;
+    padding:7px;
+    color: #959595;
+    font-size:14px;
+    font-family: "Inter", Arial, sans-serif;
+    line-height:16px;
+    width:325px;
+    display:flex;
+    position:absolute;
+    top:9px;
+
+  }
+  .course-time{
+    padding-left:15px;
+  }
+
+  .coursenamdes{
+    color:white;
+    width:700px;
+    font-family: "Inter", Arial, sans-serif;
+    position:absolute;
+    padding:34px;
+    top:34px;
+    text-align:left;
+  }
+  .course-name{
+    font-size:30px;
+    position:absolute;
+    width:555px;
+    margin-left:-135px;
+    padding-right:111px;
+  }
+
+  .course-desc{
+    font-size:15px;
+    position:absolute;
+    bottom:-154px;
+    width:378px;
+    right:428px;
+    {% comment %} text-align:left; {% endcomment %}
+  }
+  .course-top{
+    margin-left:1px;
+  }
+.producer-details{
+    color:white;
+    margin-left:30px;
+    top:267px;
+    position:absolute;
+    padding-right:763px;
+}
+.producer-img{
+    width:142px;
+}
+
+ .swiper {
+  right: 1rem;
+  width: 100%;
+  height: 100%;
+} 
+
+ .swiper-slide {
+  text-align: center;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: white;
+} 
+.swiper-button-next
+ {
+  width: 28px; 
+  height: 31px; 
+  background-color: white;
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; 
+  position: absolute;
+  z-index:10;
+  right:0;
+  transform: translateY(1px);
+}
+  
+
+.swiper-button-next::after {
+  content: ">"; 
+  font-size: 24px; 
+  color: black; 
+}
+ .swiper-button-prev {
+  width: 28px; 
+  height: 31px; 
+  background-color: #f1f1f1;
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; 
+  z-index:10;
+  left:0;
+} 
+
+.swiper-button-prev::after {
+  content: "<"; 
+  font-size: 24px; 
+  color: black; 
+}
+
+
+div.swiper-button-next, div.swiper-button-prev {
+  top:50%;
+}
+
+.explore-filter-box-category{
+  margin-right: 30px;
+  height: fit-content;
+}
+
+.explore-filter-category-element{
+  display: flex;
+  justify-content: center;
+}
+
+.menu-container{
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: max-content;
+}
+
+.menu-item, .submenu-item, .subsubmenu-item{
+  padding: 10px;
+  background-color: #F3F3F3;
+}
+
+.menu-item:hover, .submenu-item:hover, .subsubmenu-item:hover{
+  background-color: #D9D9D9;
+  cursor: pointer;
+}
+
+.subheading-container{
+  margin: 0px;
+  padding: 5px;
+  display: flex;
+  justify-content: left;
+}
+
+.subheading{
+  margin: 0px;
+  padding: 5px;
+}
+
+.learning-credits-full{
+  width:354px;
+  bottom:20px;
+  position:absolute;
+  height:17px;
+  font-family: "Inter", Arial, sans-serif;
+}
+.learning-credits{
+  position:absolute;
+  bottom:2px;
+  left:194px;
+  height:17px;
+  font-size:14px;
+}
+.learning-credits-svg{
+  position:absolute;
+  bottom:12px;
+}
+.stage-location{
+  position:absolute;
+  right:0px;
+  top:23px;
+  font-family: "Inter", Arial, sans-serif;
+
+}
+.mode-stage{
+  background: #8FC7FF;
+  color:black;
+}
+
+.explore-location{
+  background: #00000059;
+  color:white;
+
+}
+
+.prize-button{
+  position:absolute;
+  right:40px;
+  bottom:23px;
+  width:125px;
+  height:34px;
+  background:transparent;
+  color:white;
+  font-family: "Inter", Arial, sans-serif;
+  font-size:13px;
+  border-radius:4px;
+  border: 1px solid #FFFFFF;
+
+}
+.course-image{
+  width:190px;
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="banner-img">
+    <div class="swiper Myswiper">
+        <div class="swiper-wrapper">
+          {% for c in courses %}
+        <div class="swiper-slide slide" style="background-image:url('{{c.course_img.url}}');">
+          <div class="coursetd">
+            <div class="course-date">{{ c.course_date }}</div>
+            <div class="course-time">at {{ c.course_time }} IST</div>
+          </div>
+          <div class="coursenamdes">
+            <div class="course-name">{{ c.course_name }}</div>
+            <div class="course-desc">{{ c.course_description }}</div>
+          </div>
+            <div class="producer-details">
+                {% for producer in c.course_producers.all %}
+                    <img class="producer-img" src="{{ producer.producer_img.url }}" alt="{{ producer.producer_name }}">
+                {% endfor %}
+            </div>
+            <div class="learning-credits-full">
+              <div class="learning-svg">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9315 4.07478C16.9321 4.07841 16.9326 4.08203 16.9339 4.08545C17.1372 4.43353 17.2628 4.82381 17.2638 5.23423V12.0262C17.2628 12.9353 16.7094 13.7772 15.8539 14.1723L9.71859 17.0221C9.37236 17.1832 9.00023 17.2638 8.6281 17.2638C8.25501 17.2638 7.88288 17.1832 7.53569 17.0212L1.39844 14.1713C0.541009 13.7705 -0.00759331 12.9228 7.94547e-05 12.0118V5.23519C7.94547e-05 4.82477 0.125721 4.43449 0.32809 4.08737C0.330008 4.08305 0.330727 4.07874 0.331447 4.07442C0.332166 4.07011 0.332885 4.06579 0.334804 4.06148C0.336745 4.05759 0.339669 4.0542 0.342706 4.05068C0.345669 4.04724 0.34874 4.04368 0.351108 4.03942C0.386958 3.98077 0.429037 3.92696 0.471466 3.87271C0.478981 3.8631 0.486508 3.85347 0.494013 3.8438C0.505004 3.83148 0.515301 3.81858 0.525546 3.80575C0.544805 3.78162 0.563882 3.75773 0.587046 3.73832C0.812433 3.47366 1.07906 3.24161 1.40899 3.08914L7.54432 0.239249C8.23583 -0.0791098 9.02708 -0.0800687 9.71667 0.23829L9.71859 0.239249L15.8568 3.0901C16.1867 3.24256 16.4524 3.47558 16.6778 3.74024C16.6986 3.75799 16.7159 3.77925 16.7334 3.80078C16.7433 3.813 16.7533 3.82529 16.7641 3.83709C16.7762 3.85312 16.7885 3.86898 16.8008 3.88484C16.84 3.93539 16.8792 3.98586 16.9128 4.04134C16.9148 4.04461 16.9174 4.04736 16.9199 4.05003C16.9232 4.05362 16.9265 4.05708 16.9281 4.06148C16.9302 4.06572 16.9309 4.07027 16.9315 4.07478ZM8.35125 1.97934C8.43853 1.93811 8.5354 1.91797 8.63227 1.91797C8.72818 1.91797 8.82504 1.93811 8.91232 1.97934L14.0233 4.35169L8.63227 6.85637L3.24023 4.35169L8.35125 1.97934ZM1.91702 12.0194C1.9151 12.1939 2.02635 12.3492 2.20762 12.4336L7.67159 14.9699V8.52796L1.91702 5.85547V12.0194ZM9.58789 14.968L15.0451 12.4327C15.2293 12.3483 15.3425 12.1929 15.3425 12.0261V5.85547L9.58789 8.52796V14.968Z" fill="white"/>
+                  </svg>
+              </div>  
+              <div class="learning-credits">
+              {{c.course_learning_credits}} Learning Credits
+              </div>
+            </div>
+            <div class="stage-location">
+              <div class="mode-stage">
+              {{c.course_mode}} - {{c.course_stage}}
+              </div>
+              <div class="explore-location">
+                {{c.course_location}}
+              </div>
+            </div>
+            <div>
+             <button class="prize-button"> JOIN FOR {{c.course_price}} INR </button>
+            </div>
+        </div>
+      {% endfor %} 
+      </div>
+    <div class="swiper-pagination"></div>  
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+  </div>
+</div>
+
+
+
+<div class="explore-container">
+    <div class="explore-filter-container">
+        <form method="post" action="#" class="search-box1">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search through Bloombloom" />
+        </form>
+        <div class="explore-filter-dropdowns">
+            <div class="explore-filter-box">
+                <div class="explore-filter-element" onclick="toggleDropdown('modeDropdown')">
+                    Mode
+                </div>
+                <div class="explore-filter-svg"  onclick="toggleDropdown('modeDropdown')">
+                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6.46666 7.15052L11.9333 1" stroke="#959595" stroke-width="1.25"/>
+                    </svg>  
+                </div>
+                <div id="modeDropdown" class="dropdown-content">
+                    <div onclick="selectMode('online')" >Online</div>
+                    <div onclick="toggleDropdown('offlineDropdown')" >Offline</div>
+                    <div onclick="toggleDropdown('hybridDropdown')">Hybrid</div>
+                </div>
+                <div id="offlineDropdown" class="dropdown-content1">
+                    <input type="text" placeholder="Type your location" id="myInput" onkeyup="filterFunction()">  
+                        {% for location in locations %}
+                            <div onclick="selectOfflineOption('{{ location.location_name }}')">{{ location.location_name }}</div>
+                        {% endfor %}
+                </div>
+                <div id="hybridDropdown" class="dropdown-content1">
+                    <div>Online-major</div>
+                    <div>Offline major </div>
+                </div>
+            </div>
+            <div class="explore-filter-box">
+                <div class="explore-filter-element" onclick="toggleDropdown('stageDropdown')">
+                    Stage
+                </div>
+                <div class="explore-filter-svg" onclick="toggleDropdown('stageDropdown')">
+                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6.46666 7.15052L11.9333 1" stroke="#959595" stroke-width="1.25"/>
+                    </svg>  
+                </div>
+                <div id="stageDropdown" class="dropdown-content">
+                    <div >On-Demand</div>
+                    <div >Live</div>
+                </div>
+            </div>
+            <div class="explore-filter-box">
+                <div class="explore-filter-element">
+                    Type
+                </div>
+                <div class="explore-filter-svg">
+                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6.46666 7.15052L11.9333 1" stroke="#959595" stroke-width="1.25"/>
+                    </svg>  
+                </div>
+            </div>
+            <div class="explore-filter-box-category">
+              <div class="explore-filter-category-element">
+                  <div class="explore-filter-element">
+                      Categories
+                  </div>
+                  <div class="explore-filter-svg">
+                      <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1L6.46666 7.15052L11.9333 1" stroke="#959595" stroke-width="1.25"/>
+                      </svg>  
+                  </div>
+              </div>
+              <div id="menu-container" class="menu-container">
+                  <div id="menu" class="menu"></div> 
+                  <div id="submenu" class="submenu"></div>
+                  <div id="subsubmenu" class="subsubmenu"></div>
+              </div>
+          </div>
+            <div class="explore-filter-box">
+                <div class="explore-filter-element">
+                    Sectors
+                </div>
+                <div class="explore-filter-svg">
+                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6.46666 7.15052L11.9333 1" stroke="#959595" stroke-width="1.25"/>
+                    </svg>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>hello , welcome {{user.username}}</div>
+    </div>
+    <div>
+ <div>
+  {% for course in unique_courses %}
+    <p> {{ course.id }} -{{ course.course_name }}</p>
+   <a href="{% url 'course_detail' course.id  %}"> <img src="{{ course.course_img }}" class="course-image"> </a>
+    <p>{{ course.course_date }}</p>
+  {% endfor %} 
+</div> 
+
+</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+ const swiper = new Swiper('.Myswiper', {
+  // Optional parameters
+  autoplay:{
+    delay:10000000000,
+    disableOnInteraction:false,
+  },
+  loop: true,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+    clickable:true,
+  },
+
+  // Navigation arrows
+  navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+}); 
+
+const button=document.querySelector('.explore-filter-category-element');
+    button.addEventListener('click', ()=>{
+        if (document.getElementById("menu").innerHTML!=''){
+            document.getElementById("menu").innerHTML="";
+            document.getElementById('submenu').innerHTML = '';
+            document.getElementById('subsubmenu').innerHTML = '';
+        }else{
+            fetchMenu()
+        }
+    })
+
+    function fetchMenu(){
+        fetch('/get_menu')
+            .then(response=>response.json())
+            .then(data => rendermenu(data.menus));
+    }
+
+    function rendermenu(menuItems){
+        menuItems.forEach(menuItem=>{
+            const div=document.createElement('div');
+            div.textContent=menuItem.name;
+            div.setAttribute('data-menu', menuItem.name);
+            div.classList.add('menu-item');
+            document.getElementById('menu').appendChild(div);
+        })
+    }
+
+    const button2 = document.querySelectorAll('.menu');
+    button2.forEach(item => {
+    item.addEventListener('click', (event) => {
+        const menuName = event.target.dataset.menu;
+        if (document.getElementById('submenu').innerHTML != '') {
+            document.getElementById('submenu').innerHTML = '';
+            document.getElementById('subsubmenu').innerHTML = '';
+        } else {
+            fetchSubmenu(menuName);
+        }
+    });
+});
+
+    function fetchSubmenu(menuName){
+        fetch(`/get_submenu/?menu=${menuName}`)
+                .then(response => response.json())
+                .then(data => renderSubmenu(data.submenus));
+    }
+
+    function renderSubmenu(SubmenuItems){
+        SubmenuItems.forEach(SubmenuItem=>{
+            const div=document.createElement('div');
+            div.textContent=SubmenuItem.name;
+            div.setAttribute('data-submenu', SubmenuItem.name);
+            div.classList.add('submenu-item');
+            document.getElementById('submenu').appendChild(div);
+        })
+    }
+
+
+    const button3=document.querySelectorAll(".submenu");
+    button3.forEach(item=>{
+        item.addEventListener('click', (event)=>{
+            const submenuName=event.target.dataset.submenu;
+            if (document.getElementById('subsubmenu').innerHTML!=""){
+                document.getElementById('subsubmenu').innerHTML = '';
+            }else{
+                fetchSubsubmenu(submenuName)
+            }
+        })
+    })
+
+    function fetchSubsubmenu(submenuName){
+        fetch(`/get_subsubmenu/?submenu=${submenuName}`)
+                .then(response => response.json())
+                .then(data => renderSubsubmenu(data.subsubmenus));
+    }
+
+    function renderSubsubmenu(SubsubmenuItems){
+        SubsubmenuItems.forEach(SubsubmenuItem=>{
+            const div=document.createElement('div');
+            div.textContent=SubsubmenuItem.name;
+            div.setAttribute('data-subsubmenu', SubsubmenuItem.name);
+            div.classList.add('subsubmenu-item');
+            document.getElementById('subsubmenu').appendChild(div);
+        })
+    }
+
+</script>
+
+
+{% endblock %}
+{% include 'footer.html' %}
